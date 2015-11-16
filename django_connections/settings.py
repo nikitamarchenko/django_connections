@@ -84,13 +84,26 @@ WSGI_APPLICATION = 'django_connections.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'wexaes4S',
         'OPTIONS': {
             'read_default_file': '/home/nmarchenko/telsra/src/django_connections/django_connections/my.cnf',
         },
     }
 }
 
+
+# DATABASES = {
+#     'default': {
+#         'NAME': 'test',
+#         'ENGINE': 'mysql.connector.django',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'OPTIONS': {
+#           'autocommit': True,
+#         },
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -114,3 +127,29 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
+
+LOGGING = {
+    'disable_existing_loggers': False,
+    'version': 1,
+    'handlers': {
+        'console': {
+            # logging handler that outputs log messages to terminal
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG', # message level to be written to console
+        },
+    },
+    'loggers': {
+        '': {
+            # this sets root level logger to log debug and higher level
+            # logs to console. All other loggers inherit settings from
+            # root level logger.
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False, # this tells logger to send logging message
+                                # to its parent (will send if set to True)
+        },
+        'django.db': {
+            # django also has database level logging
+        },
+    },
+}

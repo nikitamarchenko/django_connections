@@ -1,0 +1,2 @@
+Django
+-e git://github.com/nikitamarchenko/wexaes4S.git#egg=wexaes4S
